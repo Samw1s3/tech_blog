@@ -3,6 +3,7 @@ const {faker} = require('@faker-js/faker');
 const sequelize = require('../config/connection');
 const Post = require('../models/Post');
 const User = require('../models/user');
+const Comment = require('../models/Comment');
 
 
 
@@ -37,6 +38,26 @@ async function seedPost(num = 10){
         });
     }
 }
+
+async function seedComment(num = 10){
+
+    for (let index = 0; index < num; index++) {
+        const body = faker.lorem.paragraph(2);
+
+        const randomUser = await User.findAll({ order: sequelize.literal("rand()"), limit: 1});
+
+        const randomPost = await Post.findAll({ order: sequelize.literal("rand()"), limit: 1});
+        
+        const user_id = randomUser[0].id;
+        const post_id = randomPost[0].id;
+        console.log({user_id});
+        await Comment.create({
+            body,
+            user_id,
+            post_id,
+        });
+    }
+}
 async function seed() {
     // seed user
     sequelize.sync({force:true}).then(async () => {
@@ -45,6 +66,8 @@ async function seed() {
         //seed post
         await seedPost(10);
         //seed comments
+
+        await seedComment(5);
     })
 }
 
