@@ -10,13 +10,10 @@ class User extends Model {
 
 User.init(
   {
-    email: {
+    user_name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
     },
     password: {
       type: DataTypes.STRING,

@@ -10,11 +10,11 @@ const Comment = require('../models/Comment');
 async function seedUsers(num = 10) {
 
     for (let index = 0; index < num; index++) {
-        const email = faker.internet.email();
+        const user_name = faker.internet.userName();
         const password = faker.internet.password(8);
 
         await User.create({
-            email,
+            user_name,
             password,
         })
         
