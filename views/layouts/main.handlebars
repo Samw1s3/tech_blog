@@ -5,18 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Blog </title>
-    <link rel="stylesheet" type="text/css" href="public\style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
     <header class="banner">
     {{!-- nav bar --}}
-    <ul>
-        <li><a href="/">Homepage</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
+    <ul class="nav">
+        <li class="nav-buttons"><a href="/">Homepage link</a></li>
+        <li class="nav-buttons"><a href="/dashboard">Dashboard</a></li>
         {{#if logged_in }}
-        <li><a href="/login"></a>Login</li>
+        <li class="nav-buttons"><a href="/login"></a>Login</li>
         {{else}}
-        <li><a href="/login"></a>Login</li>
+        <li class="nav-buttons"><a href="/login"></a>Login</li>
         {{/if}}
     </ul>
     </header>

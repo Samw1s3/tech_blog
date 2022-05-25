@@ -1,7 +1,17 @@
 header {
-    height: 10rem;
-    border-bottom: 1rem;
-    border-color: blueviolet;
+    height: 5rem;
+    border-bottom: 0.3rem solid blueviolet;
+    
+}
+
+.nav {
+    list-style-type: none;
+    display: flex;
+    flex: auto;
+}
+
+.nav-buttons {
+    padding: 0 2rem 0 2rem;
 }
 
 .header {
@@ -13,4 +23,8 @@ h2 {
 }
 .postTitle {
     background-color: darkcyan;
+}
+
+body {
+    
 }
