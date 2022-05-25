@@ -1,0 +1,16 @@
+header {
+    height: 10rem;
+    border-bottom: 1rem;
+    border-color: blueviolet;
+}
+
+.header {
+    background-color: aqua;
+}
+
+h2 {
+    background-color: aqua;
+}
+.postTitle {
+    background-color: darkcyan;
+}
