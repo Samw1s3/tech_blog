@@ -11,10 +11,12 @@ async function seedUsers(num = 10) {
 
     for (let index = 0; index < num; index++) {
         const user_name = faker.internet.userName();
+        const email = faker.internet.email();
         const password = faker.internet.password(8);
 
         await User.create({
             user_name,
+            email,
             password,
         })
         

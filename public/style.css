@@ -8,6 +8,7 @@ header {
     list-style-type: none;
     display: flex;
     flex: auto;
+    width: 100vw;
 }
 
 .nav-buttons {
@@ -19,12 +20,27 @@ header {
 }
 
 h2 {
-    background-color: aqua;
+   width: 40% ; 
+   padding: 0 2rem 0 2rem;
 }
 .postTitle {
     background-color: darkcyan;
+    display: flex;
+    flex: auto;
+    width: 98vw;
+    justify-content: stretch;
+    justify-content: flex-end;
+}
+.creator {
+    justify-content: right;
+    justify-items: flex-end;
+    justify-self: flex-end;
+    justify-content: stretch;
 }
 
+
 body {
-    
+    width: 95vw;
+    align-items: center;
+    margin: auto;
 }
