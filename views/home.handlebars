@@ -2,10 +2,8 @@
 {{#each posts as |Post| }}
 <div class="postCard">
   <div class="postTitle">
-    <h2>
-      {{Post.title}}
-     </h2>
-    <p class="creator">posted by {{Post.user.user_name}} on {{Post.createdAt}}</p>
+    <a href="/post/{{Post.id}}"><h1>{{Post.title}}</h1></a>
+     <p class="creator">posted by {{Post.user.user_name}} on {{Post.createdAt}}</p>
   </div>  
   <div class="postBody">
     <p>

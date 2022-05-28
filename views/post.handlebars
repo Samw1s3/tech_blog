@@ -1,0 +1,19 @@
+
+<article>
+        <h1>{{post.title}}</h1>
+        <h4>posted at {{post.createdAt}}</h4>
+        <h4>By: {{post.user.user_name}}</h4>
+        <p>{{post.content}}</p>
+</article>
+
+<h2>Comments</h1>
+<a href="/comments/new"><button class='btn btn-primary justify-content-end' id='create-post'>add a comment</button></a>
+<section> 
+{{#each post.comments as |comment|}}    
+<article>
+        <h4>posted at {{comment.createdAt}}</h4>
+        <h4>By: {{comment.user.user_name}}</h4>
+        <p>{{comment.body}}</p>
+</article>
+{{/each}}
+</section>

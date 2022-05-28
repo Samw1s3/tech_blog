@@ -47,77 +47,43 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-// router.get('/dashboard', withAuth, async (req, res) => {
-//   try {
-//     const postData = await Post.findAll({
-//       where: {
-//         // use the ID from the session
-//         user_id: req.session.user_id,
-//       },
-//       attributes: ['id', 'title', 'content', 'createdAt'],
-//       include: [
-//         {
-//           model: Comment,
-//           attributes: [
-//             'id',
-//             'body',
-//             'post_id',
-//             'user_id',
-//             'date_created'
-//           ],
-//           include: {
-//             model: User,
-//             attributes: ['user_name']
-//           }
-//         },
-//         {
-//           model: User,
-//           attributes: ['user_name']
-//         },
-//       ],
-//     });
-
-//     // Serialize data in array so the template can read it
-
-//     const post = postData.map(post => post.get({ plain: true }));
-
-//     // Pass serialized data and session flag into template
-//     res.render('dashboard', {
-//       post,
-//       loggedIn: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 router.get('/dashboard', withAuth, async (req, res) => {
 
     const models = (await Post.findAll({
-        include: [
-            // {
-            //     model: Comment,
-            //     attributes: [
-            //         'id',
-            //         'body',
-            //         'post_id',
-            //         'user_id',
-            //         'date_created'
-            //     ],
-            //     include: {
-            //         model: User,
-            //         attributes: ['user_name']
-            //     }
-            // },
+        
+        where: {
+            // use the ID from the session
+            user_id: req.session.user_id,
+          },
+          attributes: ['id', 'title', 'content', 'createdAt'],
+          include: [
             {
+              model: Comment,
+              attributes: [
+                'id',
+                'body',
+                'post_id',
+                'user_id',
+                'createdAt'
+              ],
+              order: [
+                Comment, 'createdAt', 'ASC'
+            ],
+              include: {
                 model: User,
                 attributes: ['user_name']
+              }
             },
-        ]
+            {
+              model: User,
+              attributes: ['user_name']
+            },
+          ],
     }))
 
     const posts = models.map((post) => post.get({ plain: true }));
-    
+
+    console.log(posts);
     res.render('dashboard', {
         logged_in: req.session.logged_in,
         posts,
@@ -125,60 +91,84 @@ router.get('/dashboard', withAuth, async (req, res) => {
     })
 
 });
+// post the data from new post
+router.post('/posts', async (req,res) =>{
+    
+    await Post.create({
+        title: req.body.title,
+        content: req.body.content,
+        user_id: req.session.user_id
+    })
+    res.redirect('/dashboard')
+})
 
-router.get('/create-post', withAuth, async (req, res) => {
+// Create a new post form
+router.get('/posts/new', withAuth, async (req, res) => {
 
 
-    res.render('create-post', {
+    res.render('newpost', {
         logged_in: req.session.logged_in,
 
     })
 
 });
-router.get('/Post/:id', async (req, res) => {
-    try {
-        const postData = await Post.findOne({
-            where: {
-                id: req.params.id,
-            },
-            attributes: ['id', 'title', 'createdAt', 'body', 'user_id'],
+router.get('/post/:id', async (req, res) => {
 
+        const post = await Post.findByPk(req.params.id,{
             include: [
                 {
                     model: Comment,
-                    attributes: [
-                        'id',
-                        'body',
-                        'post_id',
-                        'user_id',
-                        'date_created',
+                    order: [
+                        Comment, 'createdAt', 'ASC'
                     ],
                     include: {
-                        model: User,
-                        attributes: ['user_name', 'email'],
-                    },
+                        model:User,
+                    }
                 },
                 {
                     model: User,
-                    attributes: ['user_name'],
-                },
+                 },
             ],
         });
-        if (!postData) {
-            res.status(404).json({ message: 'No post found with this id' });
-            return;
-        }
+      
+        const payload = post.get({ plain: true });
+        console.log(payload);
 
-        // serialize the data
-        const post = postData.get({ plain: true });
-
+        
         // pass data to template
-        res.render('single-comment', {
-            post,
+        res.render("post", {
             logged_in: req.session.logged_in,
+            post: payload,
         });
-    } catch (err) {
-        res.status(500).json(err);
-    }
+    
 });
+
+//ADD COMMENTS TO POSTS 
+
+
+router.post('/posts', async (req,res) =>{
+    
+    await Comment.create({
+        content: req.body.body,
+        user_id: req.session.user_id,
+        post_id: req.body.post_id,
+    })
+    res.redirect('/post:id')
+})
+
+// Create a new comment
+router.get('/comment/new', withAuth, async (req, res) => {
+
+
+    res.render("newcomment", {
+        logged_in: req.session.logged_in,
+
+    })
+
+});
+
+
+
+
+
 module.exports = router;
