@@ -3,14 +3,14 @@ const { Post, User, Comment } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
-// GET ALL USERS BLOGS AND COMMENTS
+// GET ALL USERS POSTS AND COMMENTS
 router.get('/', async (req, res) => {
   try {
     console.log('===+++=====');
     const postData = await Post.findAll({
-      attributes: ['id', 'title', 'postedAt','body'],
+      attributes: ['id', 'title', 'createdAt','body'],
       order: [['created_at', 'DESC']],
-      // The comment model will attach a username to comment
+      // The comment model will attach a user_name to comment
       include: [
         {
           model: Comment,
@@ -28,11 +28,11 @@ router.get('/', async (req, res) => {
         },
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['user_name'],
         },
       ],
     });
-    res.status(200).json(blogData);
+    res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -42,15 +42,15 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     console.log('===xoxoxox=====');
-    const blogData = await Post.findOne({
+    const postData = await Post.findOne({
       where: {
         id: req.params.id,
       },
-      attributes: ['id', 'title', 'body', 'postedAt'],
+      attributes: ['id', 'title', 'body', 'createdAt'],
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['user_name'],
         },
         {
           model: Comment,
@@ -68,7 +68,7 @@ router.get('/:id', async (req, res) => {
         },
       ],
     });
-    res.status(200).json(blogData);
+    res.status(200).json(PostData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -77,7 +77,7 @@ router.get('/:id', async (req, res) => {
 // CREATE THE Post
 router.post('/', withAuth, async (req, res) => {
   try {
-    const newBlog = await Post.create( {
+    const newPost = await Post.create( {
       title: req.body.title,
       body: req.body.body,
       user_id: req.session.user_id
@@ -113,7 +113,7 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
-// DELETE THE BLOG
+// DELETE THE Post
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.destroy({
@@ -128,7 +128,7 @@ router.delete('/:id', withAuth, async (req, res) => {
       return;
     }
 
-    res.status(200).json(blogData);
+    res.status(200).json(PostData);
   } catch (err) {
     res.status(500).json(err);
   }

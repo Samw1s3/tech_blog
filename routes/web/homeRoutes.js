@@ -7,8 +7,8 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     console.log(req.session);
-    const postData = await postData.findAll({
-      attributes: ['id', 'title', 'postedAt', 'content'],
+    const postData = await Post.findAll({
+      attributes: ['id', 'title', 'createdAt', 'content'],
       include: [
         {
           model: Comment,
@@ -21,12 +21,12 @@ router.get('/', async (req, res) => {
           ],
           include: {
             model: User,
-            attributes: ['username'],
+            attributes: ['user_name'],
           },
         },
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['user_name'],
         },
       ],
     });
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
     // Pass serialized data and session flag into template
     res.render('home', {
       posts,
-      loggedIn: req.session.loggedIn,
+      logged_In: req.session.logged_In,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -72,7 +72,7 @@ router.get('/posts/:id', async (req, res) => {
       where: {
         id: req.params.id,
       },
-      attributes: ['id', 'title', 'postedAt', 'content', 'user_id'],
+      attributes: ['id', 'title', 'createdAt', 'content', 'user_id'],
 
       include: [
         {
@@ -86,12 +86,12 @@ router.get('/posts/:id', async (req, res) => {
           ],
           include: {
             model: User,
-            attributes: ['username'],
+            attributes: ['user_name'],
           },
         },
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['user_name'],
         },
       ],
     });

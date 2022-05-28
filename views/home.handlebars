@@ -5,7 +5,7 @@
     <h2>
       {{Post.title}}
      </h2>
-    <p class="creator">posted by {{Post.user.user_name}} on {{Post.postedAt}}</p>
+    <p class="creator">posted by {{Post.user.user_name}} on {{format_ date Post.createdAt}}</p>
   </div>  
   <div class="postBody">
     <p>
@@ -14,3 +14,4 @@
   </div>
 </div>
 {{/each}}
+

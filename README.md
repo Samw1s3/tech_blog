@@ -29,4 +29,4 @@ To find out more information about this repo please visit my github page https:/
 ## References
 https://stackoverflow.com/
 https://www.w3schools.com/sql/sql_join.asp
-https://www.tabnine.com/code/javascript/functions/faker/userName
+https://www.tabnine.com/code/javascript/functions/faker/user_name

@@ -1,17 +1,18 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, Comment, User } = require('../../models');
-const withAuth = require('../utils/auth');
+const withAuth = require('../../utils/auth');
 
-// FIND ALL BLOGS WITH THEIR COMMENTS
-router.get('/', withAuth, async (req, res) => {
+
+// FIND ALL Posts WITH THEIR COMMENTS
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: {
         // use the ID from the session
         user_id: req.session.user_id,
       },
-      attributes: ['id', 'title', 'content', 'postedAt'],
+      attributes: ['id', 'title', 'content', 'createdAt'],
       include: [
         {
           model: Comment,
@@ -29,7 +30,7 @@ router.get('/', withAuth, async (req, res) => {
         },
         {
           model: User,
-          attributes: ['username']
+          attributes: ['user_name']
         },
       ],
     });
@@ -55,7 +56,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
       where: {
         id: req.params.id,
       },
-      attributes: ['id', 'title', 'postedAt', 'content'],
+      attributes: ['id', 'title', 'createdAt', 'content'],
       include: [
         {
           model: Comment,
@@ -64,16 +65,16 @@ router.get('/edit/:id', withAuth, async (req, res) => {
             'body',
             'post_id',
             'user_id',
-            'postedAt',
+            'createdAt',
           ],
           include: {
             model: User,
-            attributes: ['username'],
+            attributes: ['user_name'],
           },
         },
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['user_name'],
         },
       ],
     });
@@ -100,7 +101,7 @@ router.get('/create/', withAuth, async (req, res) => {
         // use the ID from the session
         user_id: req.session.user_id,
       },
-      attributes: ['id', 'title', 'postedAt', 'content'],
+      attributes: ['id', 'title', 'createdAt', 'content'],
       include: [
         {
           model: Comment,
@@ -109,16 +110,16 @@ router.get('/create/', withAuth, async (req, res) => {
             'body',
             'post_id',
             'user_id',
-            'postedAt',
+            'createdAt',
           ],
           include: {
             model: User,
-            attributes: ['username'],
+            attributes: ['user_name'],
           },
         },
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['user_name'],
         },
       ],
     });

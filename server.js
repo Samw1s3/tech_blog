@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 // const routes = require('./routes');
 const helpers = require('./utils/helpers');
 const webRouter = require('./routes/web/web');
+const authRouter = require('./routes/web/auth');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -41,6 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(webRouter);
+app.use(authRouter)
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening at http://localhost:3001'));

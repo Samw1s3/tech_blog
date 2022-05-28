@@ -10,9 +10,9 @@ const Comment = require('../models/Comment');
 async function seedUsers(num = 10) {
 
     for (let index = 0; index < num; index++) {
-        const user_name = faker.internet.userName();
+        const user_name = faker.internet.user_name();
         const email = faker.internet.email();
-        const password = faker.internet.password(8);
+        const password = "password";
 
         await User.create({
             user_name,

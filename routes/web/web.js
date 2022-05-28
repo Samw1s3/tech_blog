@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
 const { User, Post, Comment} = require('./../../models')
 
 
@@ -45,13 +46,35 @@ router.get('/login', (req, res) => {
     res.render('signup');
   });
   
+  router.get('/dashboard', withAuth, async (req,res) => {
+
+    const posts = (await Post.findAll());
+
+    console.log(posts);
+
+    res.render('dashboard', {
+        logged_in: req.session.logged_in,
+        posts
+    })
+
+  });
+
+  router.get('/create-post', withAuth, async (req,res) => {
+
+      
+    res.render('create-post', {
+        logged_in: req.session.logged_in,
+        
+    })
+
+  });
   router.get('/Post/:id', async (req, res) => {
     try {
       const postData = await Post.findOne({
         where: {
           id: req.params.id,
         },
-        attributes: ['id', 'title', 'postedAt', 'body', 'user_id'],
+        attributes: ['id', 'title', 'createdAt', 'body', 'user_id'],
   
         include: [
           {
@@ -85,7 +108,7 @@ router.get('/login', (req, res) => {
       // pass data to template
       res.render('single-comment', {
         post,
-        loggedIn: req.session.loggedIn,
+        logged_in: req.session.logged_in,
       });
     } catch (err) {
       res.status(500).json(err);
