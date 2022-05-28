@@ -79,7 +79,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
       ],
     });
     if (!postData) {
-      res.status(404).json({ message: 'No Blog found with this id' });
+      res.status(404).json({ message: 'No Post found with this id' });
       return;
     }
     // serialize
