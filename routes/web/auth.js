@@ -6,7 +6,7 @@ router.get("/login", (req, res) => {
   return res.render("login");
 });
 
-router.post("/login", async (req, res) => {
+router.post("/api/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
 
