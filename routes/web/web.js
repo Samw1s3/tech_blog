@@ -144,18 +144,20 @@ router.get('/post/:id', async (req, res) => {
 //ADD COMMENTS TO POSTS 
 
 
-router.post('/posts/newcomment', async (req,res) =>{
-    
-    await Comment.create({
+router.post('/comment/new',   (req,res) =>{
+    console.log(req.body);
+    Comment.create({
         body: req.body.body,
-        user_id: req.session.user_id,
-        post_id: req.params.id,
+        // user_id: req.session.user_id
+        
+    }).then((comment) => {
+        res.json(comment)
     })
-    res.redirect('post')
+    // res.redirect('post')
 })
 
 // Create a new comment
-router.get('/comment/new', withAuth, async (req, res) => {
+router.get('/comments/create', withAuth, async (req, res) => {
 
 
     res.render("newcomment", {
