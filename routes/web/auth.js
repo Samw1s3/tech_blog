@@ -38,13 +38,15 @@ router.post("/api/users/login", async (req, res) => {
   }
 });
 
-router.post("/logout", (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.user_id = userData.id;
-        req.session.loggedIn = false;
-        res.redirect('/login');
-    } else {
-        res.status(404).end();
-    }
-})
+router.post("/api/users/logout", (req, res)  => {
+  console.log("get /api/user/logout");
+  // delete session if logging out
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 module.exports = router;

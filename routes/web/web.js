@@ -45,6 +45,27 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+router.post('/api/users/signup', async (req, res) => {
+    try {
+      // create new entry in user table
+      const userData = await User.create({
+        user_name: req.body.user_name,
+        email: req.body.email,
+        password: req.body.password,
+      });
+  
+      // save user.id and set loggedIn status to true
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+        res.status(200).json(userData);
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+  
 router.get('/dashboard', withAuth, async (req, res) => {
 
     const models = (await Post.findAll({
