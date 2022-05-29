@@ -1,4 +1,4 @@
-{{#if error}}
+{{!-- {{#if error}}
 <div>
   {{error}}
 </div>
@@ -14,4 +14,34 @@
 
   <button type="submit">Submit</button>
 
-</form>
+</form> --}}
+
+<div class="loginCard">
+    <h2>Login to Your Tech_Blog Account</h2>
+    <hr>
+
+    <form class="login-form">
+        {{!-- user_name --}}
+        <div class="form-group">
+            <label for="user_name-login">user_name:</label>
+            <input class="form-input" type="text" id="user_name-login" />
+        </div>
+        {{!-- email --}}
+        <div class="form-group">
+            <label class="email-login"for="email-login">email:</label>
+            <input class="form-input" type="text" id="email-login" />
+        </div>
+        {{!-- password --}}
+        <div class="form-group">
+            <label for="password-login">password:</label>
+            <input class="form-input" type="password" id="password-login" />
+        </div>
+
+        <div class="form-group">
+            <button class="button" type="submit">login</button>
+        </div>
+    </form>
+</div>
+
+{{!-- javascript file --}}
+<script src="../public/js/login.js"></script>

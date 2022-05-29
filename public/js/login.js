@@ -1,31 +1,29 @@
-// async function signupFormHandler(event) {
-//   event.preventDefault();
-
-//   const user_name = document.querySelector('#user_name-signup').value.trim();
-//   const email = document.querySelector('#email-signup').value.trim();
-//   const password = document.querySelector('#password-signup').value.trim();
+// create a post request to /api/users/login when clicking the submit button on the login page
+const loginFormHandler = async (event) => {
+    event.preventDefault();
   
-//   if (user_name && email && password) {
-//     const response = await fetch('/api/user', {
-//       method: 'post',
-//       body: JSON.stringify({ user_name, email, password}),
-//       headers: { 'Content-Type': 'application/json' }
-//     });
-
-//     if (response.ok) {
-//       document.location.replace('/dashboard');
-//     } else {
-//       alert(response.statusText);
-//     }
-//   }
-// }
-
-// document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
-//   document
-//     .querySelector('.login-form')
-//     .addEventListener('submit', loginFormHandler);
+    const email = document.querySelector("#email-login").value.trim();
+    const password = document.querySelector("#password-login").value.trim();
   
-//   document
-//     .querySelector('.signup-form')
-//     .addEventListener('submit', signupFormHandler);
+    if (email && password) {
+      // create a post request with the email and password entered
+      const response = await fetch("/api/users/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
   
+      if (response.ok) {
+        // redirect to homepage if email and password are correct
+        document.location.replace("/");
+      } else {
+        // alert the user if either email or password is incorrect
+        alert("Failed to log in");
+      }
+    }
+  };
+  
+  // add event listener to login button
+  document
+    .querySelector(".login-form")
+    .addEventListener("submit", loginFormHandler);
