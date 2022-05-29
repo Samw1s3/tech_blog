@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 // LOGIN
-router.get('/api/login', (req, res) => {
+router.get('/api/users/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
     // This is the withAuth spelled out
     console.log(req.session);
