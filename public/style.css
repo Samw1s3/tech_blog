@@ -1,46 +1,125 @@
-header {
-    height: 5rem;
-    border-bottom: 0.3rem solid blueviolet;
-    
-}
-
-.nav {
-    list-style-type: none;
-    display: flex;
-    flex: auto;
-    width: 100vw;
-}
-
-.nav-buttons {
-    padding: 0 2rem 0 2rem;
-}
-
-.header {
-    background-color: aqua;
-}
-
-h2 {
-   width: 40% ; 
-   padding: 0 2rem 0 2rem;
-}
-.postTitle {
-    background-color: darkcyan;
-    display: flex;
-    flex: auto;
-    width: 98vw;
-    justify-content: stretch;
-    justify-content: flex-end;
-}
-.creator {
-    justify-content: right;
-    justify-items: flex-end;
-    justify-self: flex-end;
-    justify-content: stretch;
-}
-
 
 body {
     width: 95vw;
     align-items: center;
     margin: auto;
 }
+header {
+    height: 5rem;
+    border-bottom: 0.3rem solid blueviolet;
+    
+}
+
+/* font-family: 'Abel', sans-serif;
+font-family: 'Karla', sans-serif;
+font-family: 'Quicksand', sans-serif; */
+.nav {
+    list-style-type: none;
+    display: flex;
+    flex: auto;
+    width: 100vw;
+    font-family: 'karla', sans-serif;
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+.nav-buttons {
+    padding: 0 2rem 0 2rem;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width:fit-content;
+    color: black;
+}
+
+.header {
+    background-color: aqua;
+}
+
+h1 {
+   width: 100% ; 
+   padding: 0;
+   font-family: 'Abel', sans-serif;
+   margin: 0;
+}
+
+h2 {
+    width: 40% ; 
+    padding: 0 2rem 0 2rem;
+    font-family: 'Abel', sans-serif;
+ }
+
+ .postCard {
+     border: solid 0.1rem black;
+     margin: 2rem 0 2rem 0;
+     border-radius: 1rem;
+     width:100%;
+ }
+
+ .commentCard {
+    border: solid 0.2rem black;
+    margin: 2rem 0 2rem 0;
+    border-radius: 1rem;
+    width:100%;
+}
+
+.commentHead {
+    background-color: #BDD5EA; 
+    font-family: 'Abel', sans-serif;
+    padding: 0.3rem;
+    border-radius: 1rem;
+    margin: 0;
+}
+.postTitle {
+    background-color: #BDD5EA;
+    display: flex;
+    width: 99.35%;
+    justify-content: stretch;
+    justify-content: flex-end;
+    font-family: 'Abel', sans-serif;
+    padding: 0.3rem;
+    border-radius: 1rem;
+    
+}
+
+.postbox{
+    flex:1;
+}
+.creator {
+    justify-content: right;
+    justify-items: flex-end;
+    justify-self: flex-end;
+    justify-content: stretch;
+    font-family: 'Abel', sans-serif;
+}
+
+.postContent {
+    font-family: 'Abel', sans-serif;
+    padding: 0.3rem;
+}
+
+
+.button {
+    display:inline-block;
+    padding:0.4em 1.2em;
+    margin:1em 0.1em 0.1em 1em;
+    border:0.16em solid rgba(255,255,255,0);
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:black;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    text-align:center;
+    transition: all 0.2s;
+    }
+    
+    button:hover{
+    border-color: rgba(255,255,255,1);
+    cursor: pointer;
+    } 

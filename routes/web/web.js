@@ -119,7 +119,7 @@ router.get('/post/:id', async (req, res) => {
                 {
                     model: Comment,
                     order: [
-                        Comment, 'createdAt', 'ASC'
+                        Comment, 'createdAt', 'DESC'
                     ],
                     include: {
                         model:User,

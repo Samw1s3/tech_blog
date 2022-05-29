@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     console.log('===+++=====');
     const postData = await Post.findAll({
       attributes: ['id', 'title', 'createdAt','body'],
-      order: [['created_at', 'DESC']],
+      order: [['createdAt', 'DESC']],
       // The comment model will attach a user_name to comment
       include: [
         {

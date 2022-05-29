@@ -1,15 +1,20 @@
 <div class='mb-5 pt-3'>
-    <a href="/posts/new"><button class='btn btn-primary justify-content-end' id='create-post'>create a
+    <a href="/posts/new"><button class='button' id='create-post'>create a
             post</button></a>
     <h2 class='title pb-4'>Dashboard: Your Posts</h2>
 </div>
 <div>
 {{#each posts as |post|}}
-    <article>
-       <a href="/post/{{post.id}}" ><h1>{{post.title}}</h1></a>
-        <h4>posted at {{post.createdAt}}</h4>
-        <h4>By: {{post.user.user_name}}</h4>
-        <p>{{post.content}}</p>
-    </article>
+    <div class="postCard">
+  <div class="postTitle">
+    <a class="postbox" href="/post/{{post.id}}"><h1>{{post.title}}</h1></a>
+     <p class="postbox"class="creator">posted by {{post.user.user_name}} on {{post.createdAt}}</p>
+  </div>  
+  <div class="postBody">
+    <p class="postContent">
+      {{post.content}}
+    </p>
+  </div>
+</div>
 {{/each}}
 </div>

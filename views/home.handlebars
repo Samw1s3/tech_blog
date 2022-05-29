@@ -2,11 +2,11 @@
 {{#each posts as |Post| }}
 <div class="postCard">
   <div class="postTitle">
-    <a href="/post/{{Post.id}}"><h1>{{Post.title}}</h1></a>
-     <p class="creator">posted by {{Post.user.user_name}} on {{Post.createdAt}}</p>
+    <a class="postbox" href="/post/{{Post.id}}"><h1>{{Post.title}}</h1></a>
+     <p class="postbox"class="creator">posted by {{Post.user.user_name}} on {{Post.createdAt}}</p>
   </div>  
   <div class="postBody">
-    <p>
+    <p class="postContent">
       {{Post.content}}
     </p>
   </div>
