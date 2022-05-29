@@ -10,6 +10,15 @@ header {
     
 }
 
+.heroImg {
+    position: absolute;
+    top: 0px;
+    right: 5rem; 
+    height:7rem;
+    width: 7rem;
+   
+}
+
 /* font-family: 'Abel', sans-serif;
 font-family: 'Karla', sans-serif;
 font-family: 'Quicksand', sans-serif; */
@@ -71,7 +80,7 @@ h2 {
     background-color: #BDD5EA; 
     font-family: 'Abel', sans-serif;
     padding: 0.3rem;
-    border-radius: 1rem;
+    border-radius: 1rem 1rem 0 0;
     margin: 0;
 }
 .postTitle {
@@ -82,7 +91,7 @@ h2 {
     justify-content: flex-end;
     font-family: 'Abel', sans-serif;
     padding: 0.3rem;
-    border-radius: 1rem;
+    border-radius: 1rem 1rem 0 0;
     
 }
 
