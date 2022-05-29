@@ -50,7 +50,7 @@
 //   // If the user is already logged in, redirect the request to another route
 //   // This is the withAuth spelled out
 //   console.log(req.session);
-//   if (req.session.loggedIn) {
+//   if (req.session.logged_in) {
 //     res.redirect('/');
 //     return;
 //   }
@@ -59,7 +59,7 @@
 
 // // SIGNUP
 // router.get('/signup', (req, res) => {
-//   if (req.session.loggedIn) {
+//   if (req.session.logged_in) {
 //     res.redirect('/');
 //     return;
 //   }
@@ -106,7 +106,7 @@
 //     // pass data to template
 //     res.render('single-comment', {
 //       post,
-//       loggedIn: req.session.loggedIn,
+//       logged_in: req.session.logged_in,
 //     });
 //   } catch (err) {
 //     res.status(500).json(err);

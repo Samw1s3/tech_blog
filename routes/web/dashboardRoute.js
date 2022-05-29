@@ -42,7 +42,7 @@
 //     // Pass serialized data and session flag into template
 //     res.render('dashboard', {
 //       post,
-//       loggedIn: true
+//       logged_in: true
 //     });
 //   } catch (err) {
 //     res.status(500).json(err);
@@ -86,7 +86,7 @@
 //     const post = postData.get({ plain: true });
 //     res.render('edit-post', {
 //       post,
-//       loggedIn: true,
+//       logged_in: true,
 //     });
 //   } catch (err) {
 //     res.status(500).json(err);
@@ -126,7 +126,7 @@
 //     const posts = postData.map(post => post.get({ plain: true }));
 //     res.render('create-post', {
 //       posts,
-//       loggedIn: true
+//       logged_in: true
 //     });
 //   } catch (err) {
 //     res.status(500).json(err);

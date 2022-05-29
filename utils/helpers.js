@@ -1,7 +1,7 @@
 module.exports = {
-    format_date: (date) => {
+    format_date: (createdAt) => {
       // Format date as MM/DD/YYYY
-      return date.toLocalDateString();
+      return createdAt.toLocaleString("en-AU")
     },
     
   }

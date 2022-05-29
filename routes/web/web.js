@@ -2,9 +2,6 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { User, Post, Comment } = require('./../../models')
 
-
-
-
 // GET all posts for homepage
 router.get('/', async (req, res) => {
     try {
@@ -18,7 +15,7 @@ router.get('/', async (req, res) => {
 
         res.render('home', {
             posts,
-            loggedin: req.session.loggedin,
+            logged_in: req.session.logged_in,
         });
     } catch (err) {
         console.log(err);
@@ -31,7 +28,7 @@ router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
     // This is the withAuth spelled out
     console.log(req.session);
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         res.redirect('/');
         return;
     }
@@ -40,11 +37,11 @@ router.get('/login', (req, res) => {
 
 // SIGNUP
 router.get('/signup', (req, res) => {
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         res.redirect('/');
         return;
     }
-    res.render('signup');
+    res.render('/signup');
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
@@ -91,6 +88,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     })
 
 });
+
 // post the data from new post
 router.post('/posts', async (req,res) =>{
     
@@ -119,7 +117,7 @@ router.get('/post/:id', async (req, res) => {
                 {
                     model: Comment,
                     order: [
-                        Comment, 'createdAt', 'DESC'
+                        Comment, 'createdAt', 'ASC'
                     ],
                     include: {
                         model:User,
@@ -149,15 +147,15 @@ router.get('/post/:id', async (req, res) => {
 router.post('/posts', async (req,res) =>{
     
     await Comment.create({
-        content: req.body.body,
+        body: req.body.body,
         user_id: req.session.user_id,
         post_id: req.body.post_id,
     })
-    res.redirect('/post:id')
+    res.redirect('/post/:id')
 })
 
 // Create a new comment
-router.get('/comment/new', withAuth, async (req, res) => {
+router.get('/comments/new', withAuth, async (req, res) => {
 
 
     res.render("newcomment", {
