@@ -28,7 +28,7 @@ router.post("/login", async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = userData.id;
-      req.session.logged_in = true;
+      req.session.loggedIn = true;
 
       res.redirect('/dashboard');
       
@@ -39,11 +39,10 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-    if (req.session.logged_in) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-        res.redirect('/home');
+    if (req.session.loggedIn) {
+        req.session.user_id = userData.id;
+        req.session.loggedIn = false;
+        res.redirect('/login');
     } else {
         res.status(404).end();
     }

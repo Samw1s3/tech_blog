@@ -102,6 +102,40 @@ h2 {
     padding: 0.3rem;
 }
 
+.newPost {
+   border: solid 0.1rem black;
+   border-radius: 1rem;
+   margin-top: 2rem;
+   position: relative;
+   padding-bottom: 1rem;
+   background-color:#52D1DC ;
+   box-shadow: 10px 10px 5px;
+   
+}
+
+.newPostTitle {
+    margin: 1rem 1rem 1rem 1rem;
+    width: 93.5%;
+    height: 2rem;
+    border-radius: 1rem;
+    font-family:'Quicksand', sans-serif ;
+    padding-left: 1rem;
+}
+
+.newPostText {
+    display: block;
+    margin: 1rem 1rem 1rem 1rem;
+    width: 95%;
+    border-radius: 1rem;
+    
+}
+
+.buttonRight {
+    justify-content: flex-end;
+   justify-self: end;
+   justify-items: flex-end;
+   display:flex
+}
 
 .button {
     display:inline-block;

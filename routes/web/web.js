@@ -41,7 +41,7 @@ router.get('/signup', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('/signup');
+    res.render('signup');
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
@@ -144,18 +144,18 @@ router.get('/post/:id', async (req, res) => {
 //ADD COMMENTS TO POSTS 
 
 
-router.post('/posts', async (req,res) =>{
+router.post('/posts/newcomment', async (req,res) =>{
     
     await Comment.create({
         body: req.body.body,
         user_id: req.session.user_id,
-        post_id: req.body.post_id,
+        post_id: req.params.id,
     })
-    res.redirect('/post/:id')
+    res.redirect('post')
 })
 
 // Create a new comment
-router.get('/comments/new', withAuth, async (req, res) => {
+router.get('/comment/new', withAuth, async (req, res) => {
 
 
     res.render("newcomment", {
