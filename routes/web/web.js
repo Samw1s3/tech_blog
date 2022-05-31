@@ -36,6 +36,20 @@ router.get('/api/users/login', (req, res) => {
     res.render('login');
 });
 
+router.get('/api/users/logout', (req, res) => {
+    // If the user is already logged in, redirect the request to another route
+    // This is the withAuth spelled out
+    console.log(req.session);
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+        res.redirect('/login')
+        return;
+        })
+        
+    }
+    res.render('login');
+});
+
 // SIGNUP
 router.get('/signup', (req, res) => {
     if (req.session.logged_in) {
@@ -165,6 +179,9 @@ router.get('/post/:id', async (req, res) => {
 
 //ADD COMMENTS TO POSTS 
 
+router.get('/comment/new',withAuth, (req, res)=> {
+    res.render('newcomment');
+})
 
 router.post('/comment/new', withAuth,  (req,res) =>{
     console.log(req.body);
