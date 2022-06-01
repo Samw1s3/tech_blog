@@ -42,7 +42,6 @@ router.get('/api/users/logout', (req, res) => {
     console.log(req.session);
     if (req.session.logged_in) {
         req.session.destroy(() => {
-        res.redirect('/login')
         return;
         })
         
@@ -68,7 +67,7 @@ router.post('/api/users/signup', async (req, res) => {
         password: req.body.password,
       });
   
-      // save user.id and set loggedIn status to true
+      // save user.id and set logged_in status to true
       req.session.save(() => {
         req.session.user_id = userData.id;
         req.session.logged_in = true;
@@ -98,7 +97,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
                 'post_id',
                 'user_id',
                 'createdAt'
-              ],
+            ],
               order: [
                 Comment, 'createdAt', 'ASC'
             ],

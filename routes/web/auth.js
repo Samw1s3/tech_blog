@@ -21,14 +21,14 @@ router.post("/api/users/login", async (req, res) => {
 
     if (!validPassword) {
       res.status(400).render("login", {
-        error: "Invalid email or password",
+        message: "Invalid email or password",
       });
       return;
     }
 
     req.session.save(() => {
       req.session.user_id = userData.id;
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
 
       res.redirect('/dashboard');
       
@@ -41,7 +41,7 @@ router.post("/api/users/login", async (req, res) => {
 router.post("/api/users/logout", (req, res)  => {
   console.log("get /api/user/logout");
   // delete session if logging out
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });
