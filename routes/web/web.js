@@ -30,7 +30,7 @@ router.get('/api/users/login', (req, res) => {
     // This is the withAuth spelled out
     console.log(req.session);
     if (req.session.logged_in) {
-        res.redirect('/');
+        res.redirect('/dashboard');
         return;
     }
     res.render('login');
