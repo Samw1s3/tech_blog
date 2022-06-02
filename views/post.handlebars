@@ -11,7 +11,14 @@
 </div>
 
 <h2>Comments</h1>
-<a href="/comment/new"><button class='button' id='create-post'>add a comment</button></a>
+<div>
+  <form action="/comment/new" method="post">
+  <textarea name="body" id="newComment" placeholder="Write a new comment here"></textarea>
+  
+  <button class="button" type="submit">Submit</button>
+
+  </form></div>
+
 <section> 
 {{#each post.comments as |comment|}}    
  <div class="commentCard">
