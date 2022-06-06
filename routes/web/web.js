@@ -219,7 +219,7 @@ router.get('/edit-post/:id', withAuth, async (req, res) => {
 
 // Delete route for a post with a matching post_id
 router.delete('api/post/:id', withAuth, (req, res) => {
-    // Looks for the post based post:id given in the request parameters
+    // Looks for the post based post/:id given in the request parameters
     Post.destroy({
       where: {
         id: req.params.id,
@@ -240,7 +240,7 @@ router.post('/api/comment/new', withAuth,  (req,res) =>{
     }).then((comment) => {
         res.json(comment)
     })
-    res.redirect('/comment/new')
+    res.redirect('/post/:id')
 });
 
 //ADD COMMENTS TO POSTS 
