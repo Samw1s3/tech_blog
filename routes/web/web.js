@@ -192,17 +192,17 @@ router.get('/post/:id', async (req, res) => {
 //     res.render('post')
 // })
 
-// Create a edit post form
-router.get('/edit/post', withAuth, async (req, res) => {
+// // Create a edit post form
+// router.get('/edit/post', withAuth, async (req, res) => {
 
 
-    res.render('edit-post', {
-        logged_in: req.session.logged_in,
+//     res.render('edit-post', {
+//         logged_in: req.session.logged_in,
 
-    })
-});
+//     })
+// });
 
-router.get('/edit/:id', withAuth, async (req, res) => {
+router.get('/edit-post/:id', withAuth, async (req, res) => {
     try {
         console.log(req)
         const postInfo = await Post.findByPk(req.params.id)
@@ -210,8 +210,8 @@ router.get('/edit/:id', withAuth, async (req, res) => {
         if (postInfo) {
             const post = postInfo.get({ plain: true})
             console.log(post)
-            res.render('edit-post', {
-                post,
+            res.render('edit-post',{
+                post: post,
             })
         } else {
             res.status(404).end()
