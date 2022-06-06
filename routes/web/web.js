@@ -180,27 +180,23 @@ router.get('/post/:id', async (req, res) => {
 });
 
 // edit post
-router.put('api/post/:id', withAuth,  (req,res) => {
-
-    Post.update({
-        content: req.body.content
-    }, {
-        where: {
-            id:req.params.id,
-        }
+router.put("/api/post/:id", withAuth, (req, res) => {
+    Post.update(req.body, {
+      where: {
+        id: req.params.id
+      }
     })
-    res.render('post')
-})
-
-// // Create a edit post form
-// router.get('/edit/post', withAuth, async (req, res) => {
-
-
-//     res.render('edit-post', {
-//         logged_in: req.session.logged_in,
-
-//     })
-// });
+      .then(affectedRows => {
+        if (affectedRows > 0) {
+          res.status(200).end();
+        } else {
+          res.status(404).end();
+        }
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  });
 
 router.get('/edit-post/:id', withAuth, async (req, res) => {
     try {
@@ -222,7 +218,7 @@ router.get('/edit-post/:id', withAuth, async (req, res) => {
 })
 
 // Delete route for a post with a matching post_id
-router.delete('post/:id', withAuth, (req, res) => {
+router.delete('api/post/:id', withAuth, (req, res) => {
     // Looks for the post based post:id given in the request parameters
     Post.destroy({
       where: {
