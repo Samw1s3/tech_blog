@@ -22,8 +22,8 @@ font-family: 'Quicksand', sans-serif; */
 .nav {
     list-style-type: none;
     display: flex;
-    flex: auto;
-    width: 100vw;
+    flex: wrap;
+    width: 100%;
     font-family: 'karla', sans-serif;
     font-size: 2rem;
     text-decoration: none;
@@ -31,6 +31,9 @@ font-family: 'Quicksand', sans-serif; */
 
 .nav-buttons {
     padding: 0 2rem 0 2rem;
+    
+    
+
 }
 
 a {
@@ -42,8 +45,14 @@ a {
     color: black;
 }
 
+ul {
+    width: 100%;
+}
+
 .header {
     background-color: aqua;
+    width: 100%;
+    flex:1;
 }
 
 h1 {
@@ -206,3 +215,18 @@ h2 {
         font-size: 1.5rem;
 
     }
+
+@media screen and (max-width: 900px) {
+    .banner {
+        height:fit-content;
+    }
+    
+    .nav {
+        width: 100%;
+        flex-direction: column;
+    }
+    .nav-buttons {
+        list-style-type: circle ;
+        display: block;
+    }
+}
