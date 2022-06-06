@@ -179,18 +179,18 @@ router.get('/post/:id', async (req, res) => {
     
 });
 
-//edit post
-// router.put('post/:id', withAuth,  (req,res) => {
+// edit post
+router.put('api/post/:id', withAuth,  (req,res) => {
 
-//     Post.update({
-//         content: req.body.content
-//     }, {
-//         where: {
-//             id:req.params.id,
-//         }
-//     })
-//     res.render('post')
-// })
+    Post.update({
+        content: req.body.content
+    }, {
+        where: {
+            id:req.params.id,
+        }
+    })
+    res.render('post')
+})
 
 // // Create a edit post form
 // router.get('/edit/post', withAuth, async (req, res) => {
