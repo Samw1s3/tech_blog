@@ -1,8 +1,8 @@
 
 body {
-    width: 95vw;
-    align-items: center;
-    margin: auto;
+    width: 80vw;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 header {
     height: 5rem;
@@ -83,8 +83,7 @@ h2 {
 .postTitle {
     background-color: #BDD5EA;
     display: flex;
-    width: 99.35%;
-    justify-content: stretch;
+    width: 99.2%;
     justify-content: flex-end;
     font-family: 'Abel', sans-serif;
     padding: 0.3rem;

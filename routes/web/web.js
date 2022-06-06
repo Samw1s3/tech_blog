@@ -99,7 +99,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
                 'createdAt'
             ],
               order: [
-                Comment, 'createdAt', 'ASC'
+                Comment, 'createdAt', 'ASC',
+                Post, 'createdAt', 'ASC',
             ],
               include: {
                 model: User,
@@ -155,11 +156,13 @@ router.get('/post/:id', async (req, res) => {
                         Comment, 'createdAt', 'ASC'
                     ],
                     include: {
-                        model:User,
+                    model: User,
+                    attributes: ['user_name']
                     }
                 },
                 {
                     model: User,
+                    attributes: ['user_name']
                  },
             ],
         });
@@ -175,38 +178,48 @@ router.get('/post/:id', async (req, res) => {
         });
     
 });
+router.put('post/:id', withAuth,  (req,res) => {
 
-//ADD COMMENTS TO POSTS 
-
-router.get('/comment/new',withAuth, (req, res)=> {
-    res.render('newcomment');
+    Post.update({
+        content: req.body.content
+    }, {
+        where: {
+            id:req.params.id,
+        }
+    })
+    res.r
 })
 
-router.post('/comment/new', withAuth,  (req,res) =>{
+
+// Delete route for a post with a matching post_id
+router.delete('post/:id', withAuth, (req, res) => {
+    // Looks for the post based book_id given in the request parameters
+    Post.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })    
+      .catch((err) => res.json(err));
+  });
+
+
+// Create a new comment
+router.post('/api/comment/new', withAuth,  (req,res) =>{
     console.log(req.body);
     Comment.create({
         body: req.body.body,
-        user_id: req.session.user_id
+        user_id: req.session.user_id,
+        post_id: req.params.id
         
     }).then((comment) => {
         res.json(comment)
     })
-    // res.redirect('post')
-})
-
-// Create a new comment
-router.get('/comments/create', withAuth, async (req, res) => {
-
-
-    res.render("newcomment", {
-        logged_in: req.session.logged_in,
-
-    })
-
+    res.redirect('/comment/new')
 });
 
+//ADD COMMENTS TO POSTS 
 
-
-
-
+router.get('/comment/new',withAuth, (req, res)=> {
+    res.render('post/${post_id}');
+});
 module.exports = router;

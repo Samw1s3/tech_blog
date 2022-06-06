@@ -1,24 +1,22 @@
 <div class="postCard">
   <div class="postTitle">
     <a class="postbox"><h1>{{post.title}}</h1></a>
-    <p class=" postbox"class="creator">posted by {{post.user.user_name}} on {{post.createdAt}}</p>
+    <p class=" postbox"class="creator">posted by {{post.user.user_name}} on {{format_date post.createdAt}}</p>
   </div>
   <div class="postBody">
     <p class="postContent">
       {{post.content}}
     </p>
   </div>
-  {{!-- {{#if post.user_id = req.session.user_id}} --}}
-  <div class="post-buttons">
+   <div class="post-buttons">
     <button class="button" type="button" id="post-delete">delete</button>
     <button class="button" id="post-edit" type="button">edit</button>
   </div>
-  {{!-- {{/if}} --}}
 </div>
 
 <h2>Comments</h2>
   <div>
-    <form action="/comment/new" method="post">
+    <form action="/api/comment/new" method="post">
       <textarea name="body" id="newComment" placeholder="Write a new comment here"></textarea>
 
       <button class="button" type="submit">Submit</button>
@@ -29,16 +27,11 @@
   <section>
     {{#each post.comments as |comment|}}
     <div class="commentCard">
-      <p class="postbox commentHead" class="creator">posted by {{comment.user.user_name}} on {{format_date
+      <p class="postbox commentHead" class="creator">posted by {{user.user_name}} on {{format_date
         comment.createdAt}}</p>
       <div class="postBody">
         <p class="postContent">{{comment.body}}</p>
       </div>
-      <div class="comment-buttons">
-        <button class="button" type="button" id="comment-delete">delete</button>
-        <button class="button" id="comment-edit" type="button">edit</button>
-      </div>
     </div>
-
     {{/each}}
   </section>
