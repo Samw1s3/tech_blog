@@ -192,6 +192,16 @@ router.get('/post/:id', async (req, res) => {
 //     res.render('post')
 // })
 
+// Create a edit post form
+router.get('/edit/post', withAuth, async (req, res) => {
+
+
+    res.render('edit-post', {
+        logged_in: req.session.logged_in,
+
+    })
+});
+
 router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         console.log(req)
