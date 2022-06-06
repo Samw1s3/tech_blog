@@ -17,7 +17,8 @@
 
 <h2>Comments</h2>
   <div>
-    <form action="/api/comment/new" method="post">
+    <form action="/api/comment/new/{{post.id}}" method="post">
+    <input class="hidden" type="text" name="postId" value="{{post.id}}" />
       <textarea name="body" id="newComment" placeholder="Write a new comment here"></textarea>
 
       <button class="button" type="submit">Submit</button>
@@ -28,7 +29,7 @@
   <section>
     {{#each post.comments as |comment|}}
     <div class="commentCard">
-      <p class="postbox commentHead" class="creator">posted by {{user.user_name}} on {{format_date
+      <p class="postbox commentHead" class="creator">posted by {{user_name}} on {{format_date
         comment.createdAt}}</p>
       <div class="postBody">
         <p class="postContent">{{comment.body}}</p>
