@@ -10,6 +10,18 @@ header {
     
 }
 
+.hidden{
+    display: none;
+}
+
+.form-heading {
+    background-color: #BDD5EA;
+    display: flex;
+    width: 99.2%;
+    justify-content: flex-end;
+    font-family: 'Abel', sans-serif;
+    padding: 0.3rem;
+}
 .heroImg {
     height: 3.5em;
     margin-top: -1em;
