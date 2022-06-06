@@ -1,3 +1,5 @@
+// const { post } = require("../../routes/web/web");
+
 const postId = document.querySelector('input[name="post-id"]').value;
 
 const editForm = async function(event) {
@@ -24,9 +26,13 @@ const editForm = async function(event) {
 const deletePost = async function (event) {
     event.preventDefault();
     const postId = document.querySelector('input[name="post-id"]').value;
-    await fetch(`/api/post/${postId}`, {
-        method: 'DELETE'
-    });
+    try {
+        await fetch(`/api/post/${postId}`, {
+         method: 'DELETE'
+        });
+       } catch(err) {
+       console.log(err);
+       }
     document.location.replace('/dashboard')
 
 };

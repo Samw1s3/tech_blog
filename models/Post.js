@@ -12,12 +12,10 @@ class Post extends Model {
 Post.init(
   {
     title: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING
     },
     content: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.TEXT
       },
     user_id: {
       type: DataTypes.INTEGER,
