@@ -178,22 +178,42 @@ router.get('/post/:id', async (req, res) => {
         });
     
 });
-router.put('post/:id', withAuth,  (req,res) => {
 
-    Post.update({
-        content: req.body.content
-    }, {
-        where: {
-            id:req.params.id,
+//edit post
+// router.put('post/:id', withAuth,  (req,res) => {
+
+//     Post.update({
+//         content: req.body.content
+//     }, {
+//         where: {
+//             id:req.params.id,
+//         }
+//     })
+//     res.render('post')
+// })
+
+router.get('/edit/:id', withAuth, async (req, res) => {
+    try {
+        console.log(req)
+        const postInfo = await Post.findByPk(req.params.id)
+        console.log(postInfo);
+        if (postInfo) {
+            const post = postInfo.get({ plain: true})
+            console.log(post)
+            res.render('edit-post', {
+                post,
+            })
+        } else {
+            res.status(404).end()
         }
-    })
-    res.r
+    } catch (error) {
+        res.redirect('login')
+    }
 })
-
 
 // Delete route for a post with a matching post_id
 router.delete('post/:id', withAuth, (req, res) => {
-    // Looks for the post based book_id given in the request parameters
+    // Looks for the post based post:id given in the request parameters
     Post.destroy({
       where: {
         id: req.params.id,
