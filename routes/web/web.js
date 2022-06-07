@@ -152,9 +152,6 @@ router.get('/post/:id', async (req, res) => {
             include: [
                 {
                     model: Comment,
-                    order: [
-                        'createdAt', 'DESC',
-                    ],
                     include: {
                     model: User,
                     attributes: ['user_name']
@@ -165,6 +162,9 @@ router.get('/post/:id', async (req, res) => {
                     attributes: ['user_name']
                  },
             ],
+            order: [
+              [Comment,'createdAt', 'DESC']
+          ],
         });
       
         const payload = post.get({ plain: true });
@@ -230,21 +230,6 @@ router.delete('/api/post/:id', withAuth, (req, res) => {
   });
 
 
-// Create a new comment
-// router.post('/api/comment/new/:id', withAuth, async (req,res) =>{
-//   console.log(req.body);
-//   try { 
-//    let comment = await Comment.create({
-//     body: req.body.body,
-//     user_id: req.session.user_id,
-//     post_id: req.params.id
-//     })  
-//     res.json(comment)
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-//   res.redirect('/post/:id')
-// });
 router.post('/api/comment/new/:id', withAuth, async (req,res) =>{
    
   await Comment.create({
@@ -254,9 +239,5 @@ router.post('/api/comment/new/:id', withAuth, async (req,res) =>{
   })
   res.redirect(`/post/`+ req.params.id)
 })
-//ADD COMMENTS TO POSTS 
 
-// router.put('/comment/new',withAuth, (req, res)=> {
-//     res.render(`post/${post_id}`);
-// });
 module.exports = router;

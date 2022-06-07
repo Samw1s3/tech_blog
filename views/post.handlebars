@@ -29,7 +29,7 @@
   <section>
     {{#each post.comments as |comment|}}
     <div class="commentCard">
-      <p class="postbox commentHead" class="creator">posted by {{user_name}} on {{format_date
+      <p class="postbox commentHead" class="creator">posted by {{comment.user.user_name}} on {{format_date
         comment.createdAt}}</p>
       <div class="postBody">
         <p class="postContent">{{comment.body}}</p>
