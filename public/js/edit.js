@@ -22,7 +22,7 @@ const editForm = async function(event) {
     })
     document.location.replace('/dashboard')
 };
-
+//delete post
 const deletePost = async function (event) {
     event.preventDefault();
     const postId = document.querySelector('input[name="post-id"]').value;
@@ -37,9 +37,11 @@ const deletePost = async function (event) {
 
 };
 
+
 document.querySelector("#edit-post-form").addEventListener('submit', editForm)
 
 document.querySelector("#delete-btn").addEventListener('click', deletePost)
+
 
 
 

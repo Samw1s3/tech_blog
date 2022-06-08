@@ -98,10 +98,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
           'user_id',
           'createdAt'
         ],
-        order: [
-          Comment, 'createdAt', 'DESC',
-          Post, 'createdAt', 'ASC',
-        ],
+        
         include: {
           model: User,
           attributes: ['user_name']
@@ -112,6 +109,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
         attributes: ['user_name']
       },
     ],
+    order: [
+          [Comment, 'createdAt', 'DESC']
+          [Post, 'createdAt', 'ASC']
+        ],
   }))
 
   const posts = models.map((post) => post.get({ plain: true }));
