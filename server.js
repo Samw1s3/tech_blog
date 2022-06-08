@@ -3,10 +3,10 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 // const js = require('./public/js');
-const helpers = require('/utils/helpers');
-const webRouter = require('/routes/web/web');
-const authRouter = require('/routes/web/auth');
-const sequelize = require('/config/connection');
+const helpers = require('./utils/helpers');
+const webRouter = require('./routes/web/web');
+const authRouter = require('./routes/web/auth');
+const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
