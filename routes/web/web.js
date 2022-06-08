@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const req = require('express/lib/request');
-const withAuth = require('../../utils/auth');
-const { User, Post, Comment } = require('../../models/')
+const withAuth = require('../utils/auth');
+const { User, Post, Comment } = require('../models/')
 
 // GET all posts for homepage
 router.get('/', async (req, res) => {
@@ -109,10 +109,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
         attributes: ['user_name']
       },
     ],
-    order: [
-          [Comment, 'createdAt', 'DESC']
-          [Post, 'createdAt', 'ASC']
-        ],
   }))
 
   const posts = models.map((post) => post.get({ plain: true }));
