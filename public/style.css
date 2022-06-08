@@ -104,7 +104,7 @@ h2 {
 .postTitle {
     background-color: #BDD5EA;
     display: flex;
-    width: 99.2%;
+    width: 99%;
     justify-content: flex-end;
     font-family: 'Abel', sans-serif;
     padding: 0.3rem;
@@ -118,6 +118,7 @@ h2 {
 .creator {
     text-align: right;
     font-family: 'Abel', sans-serif;
+    margin-right: 1rem;
 }
 
 .postContent {
