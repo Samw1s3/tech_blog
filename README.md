@@ -7,7 +7,9 @@ Page is responsive and gives users a good experience in mobile view.
 ## Table of Contents
 - [Instation Instructions](#installation-instructions)
 - [Usage Instructions](#usage-instructions)
+- [Screen Shots](#screen-shots)
 - [Repository Link](#repository-link)
+- [Video Link](#video-link)
 - [References](#references)
 
 ## Installation Instructions
@@ -23,9 +25,23 @@ Please install all packages before starting. Run both schema files (create.sql &
 
 Make sure to update the .env file to assist with you seeding a database
 
+## Screen Shots
+Home Page <br/>
+<img src="./images/Home.jpg" width="600px">
+
+Dashboard <br/>
+<img src="./images/dashboard.jpg" width="600px">
+
+Comments <br/>
+<img src="./images/update and edit.jpg" width="600px">
+
+Update and Edit <br/>
+<img src="./images/dashboard.jpg" width="600px">
 ## Repository Link
 To find out more information about this repo please visit my github page https://github.com/Samw1s3/tech_blog
 
+## Video Link
+https://drive.google.com/file/d/1jjZzGmnQuiHrWGZYRlc3U1kx2WC0xilw/view
 
 ## References
 https://stackoverflow.com/
