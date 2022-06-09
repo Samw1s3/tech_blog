@@ -32,6 +32,7 @@ const deletePost = async function (event) {
         });
        } catch(err) {
        console.log(err);
+       console.log(err);
        }
     document.location.replace('/dashboard')
 
