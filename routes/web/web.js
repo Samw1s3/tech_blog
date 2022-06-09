@@ -196,7 +196,7 @@ router.put("/api/post/:id", withAuth, (req, res) => {
     });
 });
 
-router.get('/edit-post/:id', withAuth, async (req, res) => {
+router.get('/editpost/:id', withAuth, async (req, res) => {
   console.log("edit post info", req.body);
   try {
     const postInfo = await Post.findByPk(req.params.id)
@@ -206,7 +206,7 @@ router.get('/edit-post/:id', withAuth, async (req, res) => {
           if (postInfo) {
             const post = postInfo.get({ plain: true })
             console.log(post)
-            res.render('edit-post', {
+            res.render('editpost', {
               post: post,
             })
           } else {
