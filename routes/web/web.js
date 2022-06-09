@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const req = require('express/lib/request');
-const withAuth = require('../../utils/auth');
+const withauth = require('../../utils/auth');
 const { User, Post, Comment } = require('../../models/')
 
 // GET all posts for homepage
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 // LOGIN
 router.get('/api/users/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
-  // This is the withAuth spelled out
+  // This is the withauth spelled out
   console.log(req.session);
   if (req.session.logged_in) {
     res.redirect('/dashboard');
@@ -38,7 +38,7 @@ router.get('/api/users/login', (req, res) => {
 
 router.get('/api/users/logout', (req, res) => {
   // If the user is already logged in, redirect the request to another route
-  // This is the withAuth spelled out
+  // This is the withauth spelled out
   console.log(req.session);
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -79,7 +79,7 @@ router.post('/api/users/signup', async (req, res) => {
   }
 });
 
-router.get('/dashboard', withAuth, async (req, res) => {
+router.get('/dashboard', withauth, async (req, res) => {
 
   const models = (await Post.findAll({
 
@@ -134,7 +134,7 @@ router.post('/posts', async (req, res) => {
 })
 
 // Create a new post form
-router.get('/posts/new', withAuth, async (req, res) => {
+router.get('/posts/new', withauth, async (req, res) => {
 
 
   res.render('newpost', {
@@ -178,7 +178,7 @@ router.get('/post/:id', async (req, res) => {
 });
 
 // edit post
-router.put("/api/post/:id", withAuth, (req, res) => {
+router.put("/api/post/:id", withauth, (req, res) => {
   Post.update(req.body, {
     where: {
       id: req.params.id
@@ -196,7 +196,7 @@ router.put("/api/post/:id", withAuth, (req, res) => {
     });
 });
 
-router.get('/editpost/:id', withAuth, async (req, res) => {
+router.get('/editpost/:id', withauth, async (req, res) => {
   console.log("edit post info", req.body);
   try {
     const postInfo = await Post.findByPk(req.params.id)
@@ -224,7 +224,7 @@ router.get('/editpost/:id', withAuth, async (req, res) => {
 )
 
 // Delete route for a post with a matching post_id
-router.delete('/api/post/:id', withAuth, (req, res) => {
+router.delete('/api/post/:id', withauth, (req, res) => {
   // Looks for the post based post/:id given in the request parameters
   Post.destroy({
     where: {
@@ -236,7 +236,7 @@ router.delete('/api/post/:id', withAuth, (req, res) => {
 });
 
 
-router.post('/api/comment/new/:id', withAuth, async (req, res) => {
+router.post('/api/comment/new/:id', withauth, async (req, res) => {
 
   await Comment.create({
     body: req.body.body,
